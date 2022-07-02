@@ -35,8 +35,7 @@ pipeline
 		{
 			steps
 			{
-			  parallel
-			  (
+			  parallel(
 				  "Dockle Scan":
 				  	{
 					   sh "export DOCKER_CONTENT_TRUST=1"
@@ -47,7 +46,7 @@ pipeline
 				  	{
 					   sh "trivy image dvspwa"	
 				  	}
-			  )
+			  	  )
 			}
 		}
 		
