@@ -36,7 +36,7 @@ pipeline
 		{
 			steps
 			{
-				sh "docker run openpolicyagent/opa --policy dockerfile-security.rego Dockerfile"
+				sh "docker run --rm -v openpolicyagent/opa test --policy dockerfile-security.rego Dockerfile"
 			}
 		}
 		
