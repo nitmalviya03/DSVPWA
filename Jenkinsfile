@@ -31,6 +31,15 @@ pipeline
 			}
 		}	
 		
+		stage ("Dependency Check with Python Safety")
+		{
+			steps
+			{
+				sh "docker run --rm --volume \$(pwd) pyupio/safety:latest safety check"
+				sh "docker run --rm --volume \$(pwd) pyupio/safety:latest safety check --json > report.json"
+			}
+		}
+		
 		stage ("Docker Dockle Scan")
 		{
 			steps
