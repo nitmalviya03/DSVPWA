@@ -1,6 +1,6 @@
 FROM python:3.10.4-slim-bullseye
 
-RUN addgroup -S dockle && adduser -S -G dockle dockle
+RUN useradd -d /home/dockle -m -s /bin/bash dockle
 USER dockle
 
 ARG BUILD_VER
