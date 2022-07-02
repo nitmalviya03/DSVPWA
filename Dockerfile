@@ -3,9 +3,6 @@ FROM python:3.10.4-slim-bullseye
 RUN addgroup -S dockle && adduser -S -G dockle dockle
 USER dockle
 
-chmod u-s setuid-file
-chmod u-g setgid-file
-
 ARG BUILD_VER
 ARG BUILD_REV
 ARG BUILD_DATE
