@@ -35,7 +35,8 @@ pipeline
 		{
 			steps
 			{
-				sh "docker build --rm -t dvspwa:latest ."
+				sh "export DOCKER_CONTENT_TRUST=1"
+				sh "docker build --rm -t dvspwa ."
 				sh "dockle dvspwa"
 			}
 		}
