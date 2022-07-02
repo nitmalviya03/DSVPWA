@@ -1,8 +1,5 @@
 FROM python:3.10.4-slim-bullseye
 
-RUN chmod u-s setuid-file
-RUN chmod u-g setgid-file
-
 RUN addgroup -S dockle && adduser -S -G dockle dockle
 USER dockle
 
