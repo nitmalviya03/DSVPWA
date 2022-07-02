@@ -15,21 +15,22 @@ pipeline
 			}
 		}
 		
-		stage ("Python Bandit Security Scan")
+		stage ("SAST")
 		{
 			steps
 			{
-				sh "docker run --rm --volume \$(pwd) secfigo/bandit:latest"
+			  parallel(
+				  "Bandit - SAST":
+				  	{
+					   sh "docker run --rm --volume \$(pwd) secfigo/bandit:latest"
+				  	},
+				  "Python-Taint - SAST":
+				  	{
+					   sh "docker run --rm --volume \$(pwd) vickyrajagopal/python-taint-docker pyt ."	
+				  	}
+			  	  )
 			}
 		}
-		
-		stage ("Static Analysis with python-taint")
-		{
-			steps
-			{
-				sh "docker run --rm --volume \$(pwd) vickyrajagopal/python-taint-docker pyt ."
-			}
-		}	
 		
 		stage ("Docker Vulnerability Scan ")
 		{
