@@ -32,12 +32,20 @@ pipeline
 		}	
 		
 		
-		stage ("Docker Image Scan")
+		stage ("Docker Dockle Scan")
 		{
 			steps
 			{
 				sh "docker build --rm -t dvspwa:latest ."
 				sh "dockle dvspwa"
+			}
+		}
+		
+		stage ("Docker Trivy Scan")
+		{
+			steps
+			{
+				sh "trivy image dvspwa"
 			}
 		}
 		
