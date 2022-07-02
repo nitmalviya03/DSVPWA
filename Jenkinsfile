@@ -36,7 +36,7 @@ pipeline
 		{
 			steps
 			{
-				sh "docker run openpolicyagent/conftest --policy dockerfile-security.rego Dockerfile"
+				sh "docker run openpolicyagent/opa --policy dockerfile-security.rego Dockerfile"
 			}
 		}
 		
