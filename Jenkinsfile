@@ -31,22 +31,25 @@ pipeline
 			}
 		}	
 		
-		stage ("Docker Dockle Scan")
+		stage ("Docker Vulnerability Scan ")
 		{
 			steps
 			{
-				sh "export DOCKER_CONTENT_TRUST=1"
-				sh "docker build --rm -t dvspwa ."
-				sh "dockle dvspwa"
+			  parallel
+			  (
+				  "Dockle Scan":
+				  	{
+					   sh "export DOCKER_CONTENT_TRUST=1"
+					   sh "docker build --rm -t dvspwa ."
+					   sh "dockle dvspwa"	
+				  	},
+				  "Trivy Scan":
+				  	{
+					   sh "trivy image dvspwa"	
+				  	}
+			  )
 			}
 		}
 		
-		stage ("Docker Trivy Scan")
-		{
-			steps
-			{
-				sh "trivy image dvspwa"
-			}
-		}
 	}
 }
