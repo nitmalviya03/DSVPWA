@@ -48,14 +48,5 @@ pipeline
 				sh "trivy image dvspwa"
 			}
 		}
-		
-		stage('Build and Run Web-App')
-		{
-			steps
-			{
-				sh '/usr/bin/python3 dsvpwa.py'
-			}
-		}
-
 	}
 }
