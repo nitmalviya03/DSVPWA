@@ -20,6 +20,11 @@ COPY . .
 RUN useradd -d /home/dockle -m -s /bin/bash dockle
 USER dockle
 
+HEALTHCHECK --interval=5m --timeout=3s CMD curl -f http://localhost/ || exit 1
+
+RUN chmod u-s setuid-file
+RUN chmod u-g setgid-file
+
 EXPOSE 65413
 
 CMD [ "python", "./dsvpwa.py" , "--host", "0.0.0.0" ]
