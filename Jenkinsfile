@@ -36,7 +36,7 @@ pipeline
 		{
 			steps
 			{
-				sh "docker run --rm -v openpolicyagent/conftest test --policy dockerfile-security.rego Dockerfile"
+				sh "sudo docker run --rm -v openpolicyagent/conftest test --policy dockerfile-security.rego Dockerfile"
 			}
 		}
 		
