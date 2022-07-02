@@ -32,6 +32,15 @@ pipeline
 		}	
 		
 		
+		stage ("Docker Image Scan")
+		{
+			steps
+			{
+				sh "docker build --rm -t dvspwa:latest ."
+				sh "dockle dvspwa"
+			}
+		}
+		
 		stage('Build and Run Web-App')
 		{
 			steps
