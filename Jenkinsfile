@@ -32,11 +32,12 @@ pipeline
 		}	
 		
 		
-		stage ("OPA Conftest")
+		stage ("Dockle Scan")
 		{
 			steps
-			{
-				sh "docker run --rm -v openpolicyagent/conftest --policy dockerfile-security.rego Dockerfile"
+			{	
+				docker build -t nitesh/dvspwa:latest .
+				docker run --rm -v /var/run/docker.sock:/var/run/docker.sock goodwithtech/dockle nitesh/dvspwa
 			}
 		}
 		
