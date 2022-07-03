@@ -3,7 +3,7 @@ pipeline
 	agent any
 	environment
 	{
-		DOCKERHUB_CREDENTIALS=credentials('cyb3rnaut')
+		DOCKERHUB_CREDENTIALS=credentials('nitesh03')
 	}
 
 	
@@ -60,31 +60,22 @@ pipeline
 				  	},
 				  "Trivy Scan":
 				  	{
+					   sh "docker build --rm -t dvspwa ."
 					   sh "trivy image dvspwa"	
 				  	}
 			  	  )
 			}
 		}
 		
-		 stage('Build') {
+		 stage('Build-Login-Push') 
+		{
 
-			steps {
-				sh 'docker build -t cyb3rnaut/dsvpwa:latest .'
-			}
-		}
-
-		stage('Login') {
-
-			steps {
+			steps 
+			   {
+				sh 'docker build -t nitesh03/dsvpwa:latest .'
 				sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
-			}
-		}
-
-		stage('Push') {
-
-			steps {
-				sh 'docker push cyb3rnaut/dsvpwa:latest'
-			}
+				sh 'docker push nitesh03/dsvpwa:latest'
+			   }
 		}
 	}
 }
