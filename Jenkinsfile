@@ -15,6 +15,16 @@ pipeline
 			}
 		}
 		
+		
+		stage ("Dependency Check with Python Safety")
+		{
+			steps
+			{
+				sh "docker run --rm --volume \$(pwd) pyupio/safety:latest safety check --ignore=43975 --ignore=47833"
+			
+			}
+		}
+		
 		stage ("SAST")
 		{
 			steps
