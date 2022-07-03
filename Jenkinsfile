@@ -69,7 +69,8 @@ pipeline
 				  sh 'printenv'
 				  sh 'docker build -t dsvpwa .'
 				  sh 'docker push dsvpwa'
-        	         }
+				  }
+			}
                 }
 		
 	}
