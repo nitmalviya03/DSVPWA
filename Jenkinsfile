@@ -74,7 +74,7 @@ pipeline
           
             steps {
        			 withDockerRegistry([ credentialsId: "cyb3rnaut", url: "" ]) {
-         		 sh  'docker push cyb3rnaut/dsvpwa:dsvpwa1'
+         		 sh  'docker push cyb3rnaut/dsvpwa:dsvpwa'
 			 }
 	    } 
 		}
