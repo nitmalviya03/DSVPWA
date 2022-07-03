@@ -27,6 +27,5 @@ spec:
   selector:
     app: dvspwa
   ports:
-  - protocol: "TCP"
-    port: 65000
+  - port: 65000
     targetPort: 65413
