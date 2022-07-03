@@ -65,9 +65,9 @@ pipeline
 		{
       			steps 
 			{
-    
-					sh 'docker build -t dsvpwa .'
-				  	sh 'docker push dsvpwa'
+					withDockerRegistry([credentialsId: "cyb3rnaut", url: ""])    
+					sh 'docker build -t cyb3rnaut/dsvpwa:latest .'
+				  	sh 'docker push cyb3rnaut/dsvpwa:latest'
         	         
 				 	 
 			}
