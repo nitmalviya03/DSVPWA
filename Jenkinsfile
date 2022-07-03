@@ -66,14 +66,12 @@ pipeline
 		}
 		
 		
-		
-		
 		 stage('Kubernetes Scanning') 
 		{
 
 			steps 
 			{
-				sh 'docker run -i kubesec/kubesec:v2 scan deployment.yaml'
+				sh 'docker run -i kubesec/kubesec scan /dev/stdin < deployment.yaml'
 			}
 		}
 		
