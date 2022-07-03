@@ -15,6 +15,16 @@ pipeline
 			}
 		}
 		
+		
+		stage ("Dependency Check with Python Safety")
+		{
+			steps
+			{
+				sh "docker run --rm --volume \$(pwd) pyupio/safety:latest safety check --ignore=43975 --ignore=47833"
+			
+			}
+		}
+		
 		stage ("SAST")
 		{
 			steps
@@ -50,6 +60,17 @@ pipeline
 			  	  )
 			}
 		}
+		
+		 stage('Docker Build and Push') 
+		{
+      			steps 
+			{
+       				  withDockerRegistry([credentialsId: "docker-hub", url: ""]) {
+				  sh 'printenv'
+				  sh 'docker build -t dsvpwa .'
+				  sh 'docker push dsvpwa'
+        	         }
+                }
 		
 	}
 }
