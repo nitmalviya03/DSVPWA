@@ -8,6 +8,14 @@ pipeline
 	stages
 	{
 		
+		stage('Git Checkout')
+		{
+			steps
+			{
+				git "https://github.com/nitmalviya03/DSVPWA.git"
+			}
+		}
+		
 		stage('Secret Scanning')
 		{
 			steps
@@ -75,5 +83,16 @@ pipeline
 				sh 'docker push nitesh03/dsvpwa:latest'
 			}
 		}
+		
+		
+		 stage('Kubernetes Scanning') 
+		{
+
+			steps 
+			{
+				sh 'docker run -i kubesec/kubesec:v2 scan deployment.yaml'
+			}
+		}
+		
 	}
 }
