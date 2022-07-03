@@ -61,17 +61,14 @@ pipeline
 			}
 		}
 		
-		 stage('Docker Build and Push') 
-		{
-      			steps 
+		 stage('Docker Build') 
 			{
-				withDockerRegistry([credentialsId: "cyb3rnaut", url: ""]){   
-					sh 'docker build -t cyb3rnaut/dsvpwa:latest .'
-				  	sh 'docker push cyb3rnaut/dsvpwa:latest'
-        	         
-				}	 
-			}
-                }
+      			steps 
+				{
+				 sh 'docker build -t cyb3rnaut:dsvpwa .' 
+                 		 sh 'docker tag ndsvpwa cyb3rnaut/dsvpwa:ndsvpwa'	 
+				}
+               		 }
 		
 	}
 }
