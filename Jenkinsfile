@@ -71,7 +71,8 @@ pipeline
 
 			steps 
 			{
-				sh 'docker run -i kubesec/kubesec scan /dev/stdin < deployment.yaml'
+				sh 'curl --silent --compressed --connect-timeout 5 https://kubesec.io -F file=@"deployment.yaml"
+'
 			}
 		}
 		
