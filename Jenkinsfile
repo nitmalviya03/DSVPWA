@@ -66,7 +66,7 @@ pipeline
       			steps 
 				{
 				 sh 'docker build -t dsvpwa .' 
-                 		 sh 'docker tag dsvpwa1 cyb3rnaut/dsvpwa:dsvpwa1'	 
+                 		 sh 'docker tag dsvpwa cyb3rnaut/dsvpwa:dsvpwa'	 
 				}
                		 }
 		stage('Publish image to Docker Hub') 
