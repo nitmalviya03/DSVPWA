@@ -1,7 +1,10 @@
 pipeline
 {
 	agent any
-	
+	environment
+	{
+		DOCKERHUB_CREDENTIALS=credentials('nitesh03')
+	}
 	stages
 	{
 		
@@ -55,23 +58,22 @@ pipeline
 				  	},
 				  "Trivy Scan":
 				  	{
+					   sh "docker build --rm -t dvspwa ."
 					   sh "trivy image dvspwa"	
 				  	}
 			  	  )
 			}
 		}
 		
-		 stage('Docker Build and Push') 
+		 stage('Build-Login-Push') 
 		{
-      			steps 
+
+			steps 
 			{
-       				  withDockerRegistry([credentialsId: "docker-hub", url: ""]) {
-				  sh 'printenv'
-				  sh 'docker build -t dsvpwa .'
-				  sh 'docker push dsvpwa'
-				  }
+				sh 'docker build -t nitesh03/dsvpwa:latest .'
+				sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
+				sh 'docker push nitesh03/dsvpwa:latest'
 			}
-                }
-		
+		}
 	}
 }
