@@ -8,14 +8,6 @@ pipeline
 	stages
 	{
 		
-		stage('Git Checkout')
-		{
-			steps
-			{
-				git "https://github.com/nitmalviya03/DSVPWA.git"
-			}
-		}
-		
 		stage('Secret Scanning')
 		{
 			steps
