@@ -66,11 +66,10 @@ pipeline
       			steps 
 			{
     
-				{
-				  	sh 'docker build -t dsvpwa .'
+					sh 'docker build -t dsvpwa .'
 				  	sh 'docker push dsvpwa'
         	         
-				 	 }
+				 	 
 			}
                 }
 		
