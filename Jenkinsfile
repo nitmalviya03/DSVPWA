@@ -69,6 +69,13 @@ pipeline
                  		 sh 'docker tag dsvpwa cyb3rnaut/dsvpwa:dsvpwa'	 
 				}
                		 }
-		
+		stage('Publish image to Docker Hub') {
+          
+            steps {
+       			 withDockerRegistry([ credentialsId: "dockerHub", url: "" ]) {
+         		 sh  'docker push nikhilnidhi/nginxtest:latest'
+         		 sh  'docker push nikhilnidhi/nginxtest:$BUILD_NUMBER' 
+			 }
+	    }
 	}
 }
