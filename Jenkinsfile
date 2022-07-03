@@ -65,16 +65,7 @@ pipeline
 			}
 		}
 		
-		 stage('Build-Login-Push') 
-		{
-
-			steps 
-			{
-				sh 'docker build -t nitesh03/dsvpwa:latest .'
-				sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
-				sh 'docker push nitesh03/dsvpwa:latest'
-			}
-		}
+		
 		
 		
 		 stage('Kubernetes Scanning') 
