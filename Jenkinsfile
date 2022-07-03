@@ -65,11 +65,14 @@ pipeline
 		{
       			steps 
 			{
-       				  withDockerRegistry([credentialsId: "docker-hub", url: ""]) {
-				  sh 'printenv'
-				  sh 'docker build -t dsvpwa .'
-				  sh 'docker push dsvpwa'
-        	         }
+       				  withDockerRegistry([credentialsId: "docker-hub", url: ""])
+					{
+				  	sh 'printenv'
+				  	sh 'docker build -t dsvpwa .'
+				  	sh 'docker push dsvpwa'
+        	         
+				 	 }
+			}
                 }
 		
 	}
