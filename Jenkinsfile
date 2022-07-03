@@ -69,7 +69,7 @@ pipeline
 					sh 'docker build -t cyb3rnaut/dsvpwa:latest .'
 				  	sh 'docker push cyb3rnaut/dsvpwa:latest'
         	         
-				 	 
+				}	 
 			}
                 }
 		
