@@ -1,6 +1,11 @@
 pipeline
 {
 	agent any
+	environment
+	{
+		DOCKERHUB_CREDENTIALS=credentials('cyb3rnaut')
+	}
+
 	
 	stages
 	{
@@ -61,22 +66,25 @@ pipeline
 			}
 		}
 		
-		 stage('Docker Build') 
-			{
-      			steps 
-				{
-				 sh 'docker build -t dsvpwa .' 
-                 		 sh 'docker tag dsvpwa cyb3rnaut/dsvpwa:dsvpwa'	 
-				}
-               		 }
-		stage('Publish image to Docker Hub') 
-		{
-          
-            steps {
-       			 withDockerRegistry([ credentialsId: "cyb3rnaut", url: "" ]) {
-         		 sh  'docker push cyb3rnaut/dsvpwa:dsvpwa'
-			 }
-	    } 
+		 stage('Build') {
+
+			steps {
+				sh 'docker build -t cyb3rnaut/dsvpwa:latest .'
+			}
+		}
+
+		stage('Login') {
+
+			steps {
+				sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
+			}
+		}
+
+		stage('Push') {
+
+			steps {
+				sh 'docker push cyb3rnaut/dsvpwa:latest'
+			}
 		}
 	}
 }
