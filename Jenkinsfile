@@ -65,8 +65,8 @@ pipeline
 			{
       			steps 
 				{
-				 sh 'docker build -t cyb3rnaut:dsvpwa .' 
-                 		 sh 'docker tag ndsvpwa cyb3rnaut/dsvpwa:ndsvpwa'	 
+				 sh 'docker build -t dsvpwa .' 
+                 		 sh 'docker tag dsvpwa cyb3rnaut/dsvpwa:dsvpwa'	 
 				}
                		 }
 		
