@@ -1,0 +1,34 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: dvspwa-service
+spec:
+  selector:
+    app: dvspwa
+  ports:
+  - protocol: "TCP"
+    port: 65000
+    targetPort: 65413
+  type: LoadBalancer
+
+---
+apiVersion: v1
+kind: Deployment
+metadata:
+  name: dvspwa
+spec:
+  selector:
+    matchLabels:
+      app: dvspwa
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: dvspwa
+    spec:
+      containers:
+      - name: dvspwa
+        image: dvspwa:latest
+        imagePullPolicy: Never
+        ports:
+        - containerPort: 65413
