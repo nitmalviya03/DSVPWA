@@ -71,7 +71,7 @@ pipeline
 
 			steps 
 			{
-			sh 'trivy conf ./iac'
+			sh 'docker run -i kubesec/kubesec scan deployment.yaml
 			}
 		}
 		
