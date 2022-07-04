@@ -71,7 +71,7 @@ pipeline
 
 			steps 
 			{
-			sh 'curl --silent --compressed --connect-timeout 5 https://kubesec.io -F file=@"insecuredeployment.yaml"'
+			sh 'curl --silent --compressed --connect-timeout 5 https://kubesec.io -F file=@"deployment.yaml"'
 			}
 		}
 		
