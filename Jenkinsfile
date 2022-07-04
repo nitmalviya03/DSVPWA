@@ -71,7 +71,7 @@ pipeline
 
 			steps 
 			{
-			sh 'docker run -i kubesec/kubesec scan deployment.yaml
+			sh 'docker run -i kubesec/kubesec scan deployment.yaml'
 			}
 		}
 		
