@@ -1,31 +1,21 @@
-apiVersion: v1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: dvspwa
+  name: dsvpwa-deployment
+  labels:
+    app: dsvpwa
 spec:
+  replicas: 1
   selector:
     matchLabels:
-      app: dvspwa
-  replicas: 2
+      app: dsvpwa
   template:
     metadata:
       labels:
-        app: dvspwa
+        app: dsvpwa
     spec:
       containers:
-      - name: dvspwa
-        image: dvspwa:latest
-        imagePullPolicy: Never
+      - name: dsvpwa:latest
+        image: dsvpwa
         ports:
         - containerPort: 65413
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: dvspwa-service
-spec:
-  selector:
-    app: dvspwa
-  ports:
-  - port: 9090
-    targetPort: 65413
