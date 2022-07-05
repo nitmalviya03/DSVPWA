@@ -1,11 +1,10 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: dsvpwa-deployment
+  name: dsvpwa
   labels:
     app: dsvpwa
 spec:
-  replicas: 1
   selector:
     matchLabels:
       app: dsvpwa
@@ -15,7 +14,7 @@ spec:
         app: dsvpwa
     spec:
       containers:
-      - name: dsvpwa:latest
-        image: dsvpwa
+      - image: nitesh03/dsvpwa
+        name: dsvpwa
         ports:
         - containerPort: 65413
