@@ -1,5 +1,6 @@
 pipeline
 {
+	
 	agent any
 	environment
 	{
@@ -28,7 +29,7 @@ pipeline
 			}
 		}
 		
-		stage ("SAST")
+		stage ("SAST Scanning")
 		{
 			steps
 			{
@@ -65,13 +66,25 @@ pipeline
 			}
 		}
 		
-		
-		 stage('Kubernetes Scanning') 
+		 stage('Building Docker Container and Pushing it to Docker Hub') 
 		{
 
 			steps 
-			{	sh 'cd /home/ubuntu'
-				sh './kubesec scan deployment.yaml'	
+			{
+				sh 'docker build -t nitesh03/dsvpwa:latest .'
+				sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
+				sh 'docker push nitesh03/dsvpwa:latest'
+			}
+		}
+		
+		
+		
+		 stage('Kubernetes - Deploying application in a pod') 
+		{
+
+			steps 
+			{	
+				sh 'kubectl apply -f deployment.yaml'	
 			}
 		}
 		
