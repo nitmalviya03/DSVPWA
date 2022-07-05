@@ -70,7 +70,7 @@ pipeline
 		{
 
 			steps 
-			{
+			{	sh 'cd /home/ubuntu'
 				sh './kubesec scan deployment.yaml'	
 			}
 		}
