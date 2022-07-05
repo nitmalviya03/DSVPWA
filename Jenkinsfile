@@ -84,7 +84,7 @@ pipeline
 
 			steps 
 			{	
-				sh 'kubectl apply -f deployment.yaml'	
+				sh 'sudo kubectl apply -f deployment.yaml'	
 			}
 		}
 		
