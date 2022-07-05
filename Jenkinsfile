@@ -71,7 +71,6 @@ pipeline
 
 			steps 
 			{
-				sh 'cd /home/kubesec'
 				sh './kubesec scan deployment.yaml'	
 			}
 		}
