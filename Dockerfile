@@ -20,7 +20,7 @@ COPY . .
 RUN useradd -d /home/dockle -m -s /bin/bash dockle
 USER dockle
 
-HEALTHCHECK --interval=5m --timeout=3s CMD curl -f http://localhost/ || exit 1
+HEALTHCHECK --interval=5m --timeout=3s CMD curl -f http://localhost:65413/ || exit 1
 
 EXPOSE 65413
 
